@@ -30,14 +30,8 @@ export default class ProductList {
     const list = await this.dataSource.getData();
     this.renderList(list);
   }
-  // render after doing the first stretch
+
   renderList(list) {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
   }
-
-  // render before doing the stretch
-  // renderList(list) {
-  //   const htmlStrings = list.map(productCardTemplate);
-  //   this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
-  // }
 }
