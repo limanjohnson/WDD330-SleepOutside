@@ -29,13 +29,16 @@ export default class ProductDetails {
         this.product = {};
         this.dataSource = dataSource;
     }
+
     async init() {
         this.product = await this.dataSource.findProductById(this.productId);
-        this.renderProductDetails("main");
+        console.log("loaded product", this.product);
+        this.renderProductDetails("main")
         document
             .getElementById("addToCart")
-            .addEventListener("click", this.addToCart.bind(this));
+            .addEventListener("click", () => this.addProductToCart(this.product));
     }
+
     addProductToCart(product) {
         let cartItems = getLocalStorage("so-cart");
         if (!Array.isArray(cartItems)) {
@@ -44,6 +47,7 @@ export default class ProductDetails {
         cartItems.push(product);
         setLocalStorage("so-cart", cartItems);
     }
+
     renderProductDetails(selector) {
         const element = document.querySelector(selector);
         element.insertAdjacentHTML(
