@@ -7,6 +7,7 @@ function renderCartContents() {
 }
 
 function cartItemTemplate(item) {
+  debugger;
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
