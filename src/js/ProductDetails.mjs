@@ -30,7 +30,6 @@ export default class ProductDetails {
 
     async init() {
         this.product = await this.dataSource.findProductById(this.productId);
-        console.log("loaded product", this.product);
         this.renderProductDetails("main")
         document
             .getElementById("addToCart")
