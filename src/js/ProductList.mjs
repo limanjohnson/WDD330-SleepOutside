@@ -22,16 +22,30 @@ function productCardTemplate(product) {
 
 export default class ProductList {
   constructor(category, dataSource, listElement) {
-    this.category = category;
-    this.dataSource = dataSource;
-    this.listElement = listElement;
-  }
-  async init() {
-    const list = await this.dataSource.getData();
-    this.renderList(list);
+      this.category = category;
+      this.dataSource = dataSource;
+      this.listElement = listElement;
+      this.includedIds = ["880RR", "985RF", "985PR", "344YJ"]
   }
 
+  async init() {
+      const list = await this.dataSource.getData();
+      const filteredList = this.filterList(list);
+
+      this.renderList(filteredList);
+  }
+
+  filterList(list) {
+      return list.filter(product => this.includedIds.includes(product.Id));
+  }
+
+  
+
   renderList(list) {
-    renderListWithTemplate(productCardTemplate, this.listElement, list);
+      renderListWithTemplate(
+          productCardTemplate,
+          this.listElement,
+          list
+      )
   }
 }

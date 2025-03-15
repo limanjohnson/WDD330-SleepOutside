@@ -24,15 +24,14 @@ function productDetailsTemplate(product) {
 }
 
 export default class ProductDetails {
-    constructor(productId, dataSource) {
+    constructor(productId, dataSource){
         this.productId = productId;
         this.product = {};
         this.dataSource = dataSource;
-    }
+      }
 
     async init() {
         this.product = await this.dataSource.findProductById(this.productId);
-        console.log("loaded product", this.product);
         this.renderProductDetails("main")
         document
             .getElementById("addToCart")
@@ -51,8 +50,8 @@ export default class ProductDetails {
     renderProductDetails(selector) {
         const element = document.querySelector(selector);
         element.insertAdjacentHTML(
-            "afterBegin",
-            productDetailsTemplate(this.product)
+          "afterBegin",
+          productDetailsTemplate(this.product)
         );
     }
 }
