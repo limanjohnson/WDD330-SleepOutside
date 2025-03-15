@@ -1,4 +1,12 @@
-https://trello.com/b/9Grpylok/sleep-outside-team-5
+Shannon Hickman
+olamiposi olatoyosi Ajanaku
+Juan Betancourt
+Nsisong Gabriel Johnson
+Liam Nell
+Paulo André Alves do Nascimento
 
+<<<<<<< HEAD
 Shannon Hickman
 Juan Betancourt
+=======
+>>>>>>> bb0f969100f39fdecaf560e86f96a17cb9356a20
