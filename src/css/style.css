@@ -213,6 +213,23 @@ button {
   grid-column: 3;
 }
 
+/* this is the discount badge styling */
+.price-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between price and badge */
+}
+
+.discount-badge {
+  background-color: red;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
