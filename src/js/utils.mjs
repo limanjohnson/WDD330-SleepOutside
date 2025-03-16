@@ -44,3 +44,17 @@ export function renderListWithTemplate(
   }
   parentElement.insertAdjacentHTML(position, useHtmlTemplate.join(""));
 }
+
+// update the cart count by the cart image
+export function updateCartCount() {
+  const cartItems = getLocalStorage("so-cart") || [];
+  const cartCountElement = document.getElementById("cart-count");
+  if (cartCountElement) {
+    if (cartItems.length === 0) {
+      cartCountElement.style.display = "none";
+    } else {
+      cartCountElement.style.display = "block";
+      cartCountElement.textContent = cartItems.length;
+    }
+  }
+}
