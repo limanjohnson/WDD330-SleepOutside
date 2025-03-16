@@ -1,4 +1,5 @@
-import { setLocalStorage } from "./utils.mjs";
+
+import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
     const discount = Math.round(((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100);
@@ -22,7 +23,6 @@ function productDetailsTemplate(product) {
         </div>
     </section>`;
 }
-
 export default class ProductDetails {
     constructor(productId, dataSource){
         this.productId = productId;
@@ -45,6 +45,7 @@ export default class ProductDetails {
         }
         cartItems.push(product);
         setLocalStorage("so-cart", cartItems);
+        updateCartCount();
     }
 
     renderProductDetails(selector) {
