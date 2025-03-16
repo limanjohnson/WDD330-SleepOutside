@@ -110,6 +110,17 @@ button {
   fill: gray;
 }
 
+#cart-count {
+  background-color: #f0a868;
+  float: inline-end;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: relative;
+    right: 15px;
+    top: -8px;
+}
+
 /* End cart icon styles */
 
 .mission {
