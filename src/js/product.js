@@ -10,4 +10,3 @@ product.init();
 
 // update the cart count
 updateCartCount();
-
