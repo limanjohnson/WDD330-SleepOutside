@@ -45,6 +45,40 @@ export function renderListWithTemplate(
   parentElement.insertAdjacentHTML(position, useHtmlTemplate.join(""));
 }
 
+// render header and footer
+export function renderWithTemplate(
+  template, 
+  parentElement,  
+  data,
+  callback
+) {
+  parentElement.insertAdjacentHTML("afterbegin", template);
+  console.log(template);
+  console.log(data)
+  // parentElement.innerHTML = template;
+  if (callback) {
+    callback(data);
+  }
+}
+
+// fetch the content of an HTML file from given path
+export async function loadTemplate(path) {
+  const res = await fetch(path);
+  const template = await res.text();
+  return template;
+}
+
+export async function loadHeaderFooter() {
+  const headerTemplate = await loadTemplate("../partials/header.html");
+  const headerElement = document.getElementById("main-header")
+  renderWithTemplate(headerTemplate, headerElement);
+
+  const footerTemplate = await loadTemplate("../partials/footer.html");
+  const footerElement = document.getElementById("main-footer")
+  renderWithTemplate(footerTemplate, footerElement);
+}
+
+
 // update the cart count by the cart image
 export function updateCartCount() {
   const cartItems = getLocalStorage("so-cart") || [];
