@@ -343,3 +343,7 @@ form.search button {
 form.search button:hover {
   background-color: #005f46;
 }
+
+.hide {
+  display: none;
+}
