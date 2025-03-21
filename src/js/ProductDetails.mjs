@@ -8,7 +8,7 @@ function productDetailsTemplate(product) {
     return `<section class="product-detail">
         <h3>${product.Brand.Name}</h3>
         <h2 class="divider">${product.NameWithoutBrand}</h2>
-        <img class="divider" src="${product.Image}" alt="${product.NameWithoutBrand}" />
+        <img class="divider" src="${product.Images.PrimaryLarge}" alt="${product.NameWithoutBrand}" />
         <div class="price-container">
           ${hasDiscount ? `<span class="discount-badge">${discount}% OFF</span>` : ""}
           <p class="product-card__price">
@@ -23,12 +23,13 @@ function productDetailsTemplate(product) {
         </div>
     </section>`;
 }
+
 export default class ProductDetails {
-    constructor(productId, dataSource){
+    constructor(productId, dataSource) {
         this.productId = productId;
         this.product = {};
         this.dataSource = dataSource;
-      }
+    }
 
     async init() {
         this.product = await this.dataSource.findProductById(this.productId);
@@ -51,8 +52,8 @@ export default class ProductDetails {
     renderProductDetails(selector) {
         const element = document.querySelector(selector);
         element.insertAdjacentHTML(
-          "afterBegin",
-          productDetailsTemplate(this.product)
+            "afterBegin",
+            productDetailsTemplate(this.product)
         );
     }
 }
