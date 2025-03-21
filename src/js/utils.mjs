@@ -32,36 +32,31 @@ export function getParam(param) {
 }
 
 export function renderListWithTemplate(
-  templateFn, 
+  template, 
   parentElement, 
   list, 
   position = "afterBegin", 
   clear = false
 ) {
-  const useHtmlTemplate = list.map(templateFn);
+  const useHtmlTemplate = list.map(template);
   if (clear) {
     parentElement.innerHTML = "";
   }
   parentElement.insertAdjacentHTML(position, useHtmlTemplate.join(""));
 }
 
-// render header and footer
 export function renderWithTemplate(
   template, 
-  parentElement,  
-  data,
+  parentElement, 
+  data, 
   callback
 ) {
-  parentElement.insertAdjacentHTML("afterbegin", template);
-  console.log(template);
-  console.log(data)
-  // parentElement.innerHTML = template;
-  if (callback) {
-    callback(data);
-  }
+    parentElement.innerHTML = template;
+    if (callback) {
+      callback(data);
+    }
 }
 
-// fetch the content of an HTML file from given path
 export async function loadTemplate(path) {
   const res = await fetch(path);
   const template = await res.text();
@@ -70,11 +65,12 @@ export async function loadTemplate(path) {
 
 export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate("../partials/header.html");
-  const headerElement = document.getElementById("main-header")
-  renderWithTemplate(headerTemplate, headerElement, null, updateCartCount);
-
   const footerTemplate = await loadTemplate("../partials/footer.html");
-  const footerElement = document.getElementById("main-footer")
+
+  const headerElement = document.querySelector("#main-header");
+  const footerElement = document.querySelector("#main-footer");
+
+  renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
 }
 
