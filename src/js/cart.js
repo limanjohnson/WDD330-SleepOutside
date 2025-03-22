@@ -3,6 +3,8 @@ import { getLocalStorage, updateCartCount, loadHeaderFooter } from "./utils.mjs"
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+  console.table(htmlItems)
+  console.table(localStorage);
 
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 }
@@ -12,7 +14,7 @@ function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images?.PrimarySmall}"
       alt="${item.Name}"
     />
   </a>

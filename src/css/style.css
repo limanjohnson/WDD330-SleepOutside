@@ -248,3 +248,20 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+/* start of product category image styles */
+.product-category-images {
+  display: flex;
+  justify-content: space-around;
+  margin:1em;
+}
+
+.product-category-images div img {
+  max-width:100px;
+  max-height:100px;
+}
+
+.category-title {
+  text-align:center;
+  margin:1em;
+}

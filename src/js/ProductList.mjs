@@ -7,8 +7,8 @@ function productCardTemplate(product) {
   const hasDiscount = discount > 0;
 
   return `<li class="product-card">
-    <a href="product_pages/index.html?product=${product.Id}">
-      <img src="${product.Image}" alt="Image of ${product.Name}" />
+    <a href="../product_pages/?product=${product.Id}">
+      <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}" />
       <h3 class="card__brand">${product.Brand.Name}</h3>
       <h2 class="card__name">${product.NameWithoutBrand}</h2>
       
@@ -28,18 +28,20 @@ export default class ProductList {
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
-    this.includedIds = ["880RR", "985RF", "985PR", "344YJ"];
+    // this.includedIds = ["880RR", "985RF", "985PR", "344YJ"];
   }
 
   async init() {
-    const list = await this.dataSource.getData();
-    const filteredList = this.filterList(list);
-    this.renderList(filteredList);
+    const list = await this.dataSource.getData(this.category);
+    // const filteredList = this.filterList(list);
+    // this.renderList(filteredList);
+    this.renderList(list);
+    document.querySelector(".title").textContent = this.category.charAt(0).toUpperCase() + this.category.slice(1);
   }
 
-  filterList(list) {
-    return list.filter((product) => this.includedIds.includes(product.Id));
-  }
+  // filterList(list) {
+  //   return list.filter((product) => this.includedIds.includes(product.Id));
+  // }
 
   renderList(list) {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
