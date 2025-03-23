@@ -1,10 +1,17 @@
 import { getLocalStorage, updateCartCount, loadHeaderFooter } from "./utils.mjs";
 
 function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart");
+  const cartItems = getLocalStorage("so-cart") || [];
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  // ✅ Show cart total if cart is not empty
+  if (cartItems.length > 0) {
+    const total = cartItems.reduce((sum, item) => sum + item.FinalPrice, 0);
+    const cartFooter = document.querySelector(".cart-footer");
+    const totalDisplay = cartFooter.querySelector(".cart-total");
+    totalDisplay.textContent = `Total: $${total.toFixed(2)}`;
+    cartFooter.classList.remove("hide");
+  }
 }
 
 function cartItemTemplate(item) {
@@ -12,7 +19,7 @@ function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images?.PrimarySmall}"
       alt="${item.Name}"
     />
   </a>
@@ -28,6 +35,7 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
+
 
 // display cart count
 updateCartCount();
