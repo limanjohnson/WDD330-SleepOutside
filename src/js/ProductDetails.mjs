@@ -83,12 +83,11 @@ export default class ProductDetails {
         updateCartCount();
     }
 
-    renderProductDetails() {
-        // const element = document.querySelector(selector);
-        // element.insertAdjacentHTML(
-        //   "afterBegin",
-        //   productDetailsTemplate(this.product)
-        // );
-        productDetailsTemplate(this.product);
+    renderProductDetails(selector) {
+        const element = document.querySelector(selector);
+        element.insertAdjacentHTML(
+            "afterBegin",
+            productDetailsTemplate(this.product)
+        );
     }
 }

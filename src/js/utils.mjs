@@ -32,10 +32,10 @@ export function getParam(param) {
 }
 
 export function renderListWithTemplate(
-  templateFn, 
-  parentElement, 
-  list, 
-  position = "afterBegin", 
+  templateFn,
+  parentElement,
+  list,
+  position = "afterBegin",
   clear = false
 ) {
   const useHtmlTemplate = list.map(templateFn);
@@ -47,8 +47,8 @@ export function renderListWithTemplate(
 
 // render header and footer
 export function renderWithTemplate(
-  template, 
-  parentElement,  
+  template,
+  parentElement,
   data,
   callback
 ) {
