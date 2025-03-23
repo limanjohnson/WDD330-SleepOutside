@@ -1,5 +1,10 @@
-import { renderListWithTemplate } from "./utils.mjs";
-import { getParam } from "./utils.mjs";
+import {
+  renderListWithTemplate,
+  getParam,
+  getLocalStorage,
+  setLocalStorage,
+  updateCartCount
+} from "./utils.mjs";
 
 function productCardTemplate(product) {
   const discount = Math.round(
@@ -12,7 +17,7 @@ function productCardTemplate(product) {
       <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}" />
       <h3 class="card__brand">${product.Brand.Name}</h3>
       <h2 class="card__name">${product.NameWithoutBrand}</h2>
-      
+
       <div class="price-container">
         ${hasDiscount ? `<span class="discount-badge">${discount}% OFF</span>` : ""}
         <p class="product-card__price">
@@ -21,6 +26,7 @@ function productCardTemplate(product) {
         </p>
       </div>
     </a>
+    <button class="add-to-cart-btn" data-id="${product.Id}">Add to Cart</button>
   </li>`;
 }
 
@@ -29,31 +35,37 @@ export default class ProductList {
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
-    this.originalList = []
-    // this.includedIds = ["880RR", "985RF", "985PR", "344YJ"];
+    this.originalList = [];
   }
 
   async init() {
-    const list = await this.dataSource.getData(this.category);
-    this.originalList = list;
-
-    // If a search term exists, filter the list, otherwise use the full list
-    this.renderList(list);
-
-    // Handle when the category is null or undefined
-    const titleElement = document.querySelector(".title");
-
-    document.getElementById("sort").addEventListener("change", (e) =>
-      this.sortList(e.target.value)
-    );
+    const products = await this.dataSource.getData(this.category);
+    this.originalList = products;
+    this.renderList(products);
+    this.addCartEventListeners(products);
   }
 
-  // filterList(list) {
-  //   return list.filter((product) => this.includedIds.includes(product.Id));
-  // }
+  renderList(productList) {
+    this.listElement.innerHTML = productList
+      .map(product => productCardTemplate(product))
+      .join("");
+  }
 
-  renderList(list) {
-    renderListWithTemplate(productCardTemplate, this.listElement, list);
+  addCartEventListeners(products) {
+    document.querySelectorAll(".add-to-cart-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        const productId = button.dataset.id;
+        const product = products.find(p => p.Id === productId);
+
+        let cart = getLocalStorage("so-cart") || [];
+        cart.push(product);
+        setLocalStorage("so-cart", cart);
+        updateCartCount();
+
+        // ✅ Redirect to the cart page
+        window.location.href = "/cart/index.html";
+      });
+    });
   }
 
   sortList(criteria) {
@@ -78,5 +90,4 @@ export default class ProductList {
 
     this.renderList(sortedList);
   }
-
 }
