@@ -19,11 +19,10 @@ function renderCartContents() {
 }
 
 function cartItemTemplate(item) {
-  debugger;
   const colorName = item.Colors?.[0]?.ColorName || "No Color";
   return `<li class="cart-card divider">
     <a href="#" class="cart-card__image">
-    <img src="${item.Images?.PrimaryMedium || '/images/default.jpg'}" alt="Image of ${item.Name}" />
+    <img src="${item.Images?.PrimaryMedium || item.Image}" alt="Image of ${item.Name}" />
 
     </a>
     <a href="#">
