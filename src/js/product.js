@@ -13,4 +13,3 @@ updateCartCount();
 
 // load header and footer
 loadHeaderFooter();
-

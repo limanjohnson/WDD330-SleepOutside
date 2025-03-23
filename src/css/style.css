@@ -117,8 +117,8 @@ button {
   height: 20px;
   border-radius: 50%;
   position: relative;
-    right: 15px;
-    top: -8px;
+  right: 15px;
+  top: -8px;
 }
 
 /* End cart icon styles */
@@ -253,17 +253,17 @@ footer {
 .product-category-images {
   display: flex;
   justify-content: space-around;
-  margin:1em;
+  margin: 1em;
 }
 
 .product-category-images div img {
-  max-width:100px;
-  max-height:100px;
+  max-width: 100px;
+  max-height: 100px;
 }
 
 .category-title {
-  text-align:center;
-  margin:1em;
+  text-align: center;
+  margin: 1em;
 }
 
 /* End of product category image styles */
