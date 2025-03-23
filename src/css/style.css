@@ -265,3 +265,49 @@ footer {
   text-align:center;
   margin:1em;
 }
+
+/* End of product category image styles */
+
+/* Start of cart image styles */
+
+.hide {
+  display: none;
+}
+
+/* End of cart image styles */
+
+/* Start of search form styles */
+
+/* Style for the search form */
+form.search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+form.search input[type="text"] {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  min-width: 180px;
+}
+
+form.search button {
+  background-color: #007b5e;
+  color: white;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+form.search button:hover {
+  background-color: #005f46;
+}
+
+/* End of search form styles */

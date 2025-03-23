@@ -28,15 +28,16 @@ export default class ProductList {
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
+    this.originalList = []
     // this.includedIds = ["880RR", "985RF", "985PR", "344YJ"];
   }
 
   async init() {
     const list = await this.dataSource.getData(this.category);
-    // const filteredList = this.filterList(list);
-    // this.renderList(filteredList);
+    this.originalList = list
     this.renderList(list);
     document.querySelector(".title").textContent = this.category.charAt(0).toUpperCase() + this.category.slice(1);
+    document.getElementById("sort").addEventListener("change", (e) => this.sortList(e.target.value));
   }
 
   // filterList(list) {
@@ -46,4 +47,28 @@ export default class ProductList {
   renderList(list) {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
   }
+
+  sortList(criteria) {
+    let sortedList = [...this.originalList];
+
+    switch (criteria) {
+      case "price-asc":
+        sortedList.sort((a, b) => a.FinalPrice - b.FinalPrice);
+        break;
+      case "price-des":
+        sortedList.sort((a, b) => b.FinalPrice - a.FinalPrice);
+        break;
+      case "name-asc":
+        sortedList.sort((a, b) => a.NameWithoutBrand.localeCompare(b.NameWithoutBrand));
+        break;
+      case "name-des":
+        sortedList.sort((a, b) => b.NameWithoutBrand.localeCompare(a.NameWithoutBrand));
+        break;
+      default:
+        break;
+    }
+
+    this.renderList(sortedList);
+  }
+
 }

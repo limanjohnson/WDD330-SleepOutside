@@ -7,6 +7,7 @@ const dataSource = new ProductData();
 const element = document.querySelector(".product-list");
 const listing = new ProductList(category, dataSource, element);
 
+
 listing.init();
 
 // display cart count
