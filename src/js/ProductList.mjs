@@ -1,4 +1,5 @@
 import { renderListWithTemplate } from "./utils.mjs";
+import { getParam } from "./utils.mjs";
 
 function productCardTemplate(product) {
   const discount = Math.round(
@@ -34,10 +35,17 @@ export default class ProductList {
 
   async init() {
     const list = await this.dataSource.getData(this.category);
-    this.originalList = list
+    this.originalList = list;
+
+    // If a search term exists, filter the list, otherwise use the full list
     this.renderList(list);
-    document.querySelector(".title").textContent = this.category.charAt(0).toUpperCase() + this.category.slice(1);
-    document.getElementById("sort").addEventListener("change", (e) => this.sortList(e.target.value));
+
+    // Handle when the category is null or undefined
+    const titleElement = document.querySelector(".title");
+
+    document.getElementById("sort").addEventListener("change", (e) =>
+      this.sortList(e.target.value)
+    );
   }
 
   // filterList(list) {
