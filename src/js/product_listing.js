@@ -26,7 +26,7 @@ async function init() {
     );
 
     // DEBUG: See which products matched the search
-    console.log("Filtered product results:", products);
+    // console.log("Filtered product results:", products);
   } else {
     // fallback to a single category
     products = await dataSource.getData(category || "tents");

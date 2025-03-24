@@ -1,6 +1,4 @@
 import {
-  renderListWithTemplate,
-  getParam,
   getLocalStorage,
   setLocalStorage,
   updateCartCount
@@ -14,7 +12,7 @@ function productCardTemplate(product) {
 
   return `<li class="product-card">
     <a href="../product_pages/?product=${product.Id}">
-    <img src="${product.Images?.PrimaryMedium || '/images/default.jpg'}" alt="Image of ${product.Name}" />
+    <img src="${product.Images?.PrimaryMedium || "/images/default.jpg"}" alt="Image of ${product.Name}" />
 
       <h3 class="card__brand">${product.Brand.Name}</h3>
       <h2 class="card__name">${product.NameWithoutBrand}</h2>
@@ -44,6 +42,9 @@ export default class ProductList {
     this.originalList = products;
     this.renderList(products);
     this.addCartEventListeners(products);
+    document.getElementById("sort").addEventListener("change", (e) =>
+      this.sortList(e.target.value)
+    );
   }
 
   renderList(productList) {
