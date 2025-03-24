@@ -1,4 +1,3 @@
-
 import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
 
 // function productDetailsTemplate(product) {
@@ -36,7 +35,7 @@ function productDetailsTemplate(product) {
     productImage.src = product.Images.PrimaryExtraLarge;
     productImage.alt = product.NameWithoutBrand;
 
-    const discountPriceContainer = `
+  document.querySelector("#p-price").innerHTML = `
         <div class="price-container">
             ${hasDiscount ? `<span class="discount-badge">${discount}% OFF</span>` : ""}
             <p class="product-card__price">
@@ -45,7 +44,6 @@ function productDetailsTemplate(product) {
             </p>
         </div>
     `;
-    document.querySelector("#p-price").innerHTML = discountPriceContainer;
 
     document.querySelector("#p-color").textContent = product.Colors[0].ColorName;
     document.querySelector("#p-description").innerHTML = product.DescriptionHtmlSimple;
@@ -61,7 +59,6 @@ export default class ProductDetails {
       }
 
     async init() {
-        console.log(this.productId);
         this.product = await this.dataSource.findProductById(this.productId);
         this.renderProductDetails()
         document
@@ -70,7 +67,6 @@ export default class ProductDetails {
     }
 
     addProductToCart(product) {
-        console.log(product);
 
         product.Image = product.Images?.PrimarySmall || "";
 
@@ -83,11 +79,7 @@ export default class ProductDetails {
         updateCartCount();
     }
 
-    renderProductDetails(selector) {
-        const element = document.querySelector(selector);
-        element.insertAdjacentHTML(
-            "afterBegin",
-            productDetailsTemplate(this.product)
-        );
+    renderProductDetails() {
+        productDetailsTemplate(this.product);
     }
 }
