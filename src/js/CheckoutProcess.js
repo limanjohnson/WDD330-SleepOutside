@@ -60,7 +60,7 @@ export default class CheckoutProcess {
       parseFloat(this.itemTotal) +
       parseFloat(this.tax) +
       parseFloat(this.shipping)
-    )
+    ).toFixed(2);
 
     // display the totals.
     this.displayOrderTotals();
@@ -75,7 +75,7 @@ export default class CheckoutProcess {
 
     tax.innerText = `$${this.tax.toFixed(2)}`;
     shipping.innerText = `$${this.shipping.toFixed(2)}`;
-    orderTotal.innerText = `$${this.orderTotal.toFixed(2)}`;
+    orderTotal.innerText = `$${this.orderTotal}`;
   }
 
   async checkout() {
