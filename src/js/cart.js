@@ -2,6 +2,7 @@ import {
   getLocalStorage,
   updateCartCount,
   loadHeaderFooter,
+  setLocalStorage,
 } from "./utils.mjs";
 
 function renderCartContents() {
@@ -16,6 +17,7 @@ function renderCartContents() {
     totalDisplay.textContent = `Total: $${total.toFixed(2)}`;
     cartFooter.classList.remove("hide");
   }
+  removeItemFromCartListener();
 }
 
 function cartItemTemplate(item) {
@@ -31,7 +33,36 @@ function cartItemTemplate(item) {
     <p class="cart-card__color">${colorName}</p>
     <p class="cart-card__quantity">qty: 1</p>
     <p class="cart-card__price">$${item.FinalPrice}</p>
+    <button class="remove-item-button" data-id="${item.Id}">Remove</button>
   </li>`;
+}
+
+function removeItemFromCart(itemId) {
+  let cartItems = getLocalStorage("so-cart");
+
+  if (cartItems && cartItems.length > 0) {
+
+    // Filter item by id
+    cartItems = cartItems.filter((item) => item.Id !== itemId);
+
+    // Update local storage with the new cart
+    setLocalStorage("so-cart", cartItems);
+
+    // Re-render the cart contents
+    renderCartContents();
+
+    // Update cart item count
+    updateCartCount();
+  }
+}
+
+function removeItemFromCartListener() {
+  document.querySelectorAll(".remove-item-button").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const itemId = event.target.dataset.id;
+      removeItemFromCart(itemId);
+    });
+  });
 }
 
 renderCartContents();

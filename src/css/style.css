@@ -213,6 +213,11 @@ button {
   grid-column: 3;
 }
 
+.remove-item-button {
+  background: red;
+  grid-column: 4 / 5;
+}
+
 /* this is the discount badge styling */
 .price-container {
   display: flex;
