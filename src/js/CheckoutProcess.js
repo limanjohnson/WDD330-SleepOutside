@@ -16,8 +16,8 @@ function packageItems(items) {
   const simplifiedItems = items.map((item) => {
     console.log(item);
     return {
-      id: item.id,
-      price: item.price,
+      id: item.Id,
+      price: item.FinalPrice,
       name: item.Name,
       quantity: 1,
     };
