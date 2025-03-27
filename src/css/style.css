@@ -180,13 +180,14 @@ button {
 /* Start cart list card styles */
 .cart-card {
   display: grid;
-  grid-template-columns: 25% auto 15%;
+  grid-template-columns: 1fr;
   font-size: var(--small-font);
   /* max-height: 120px; */
   align-items: center;
 }
 
 .cart-card__image {
+  max-width:100px;
   grid-row: 1/3;
   grid-column: 1;
 }
@@ -213,9 +214,59 @@ button {
   grid-column: 3;
 }
 
+@media screen and (min-width: 600px) {
+  .cart-card {
+    grid-template-columns: 1fr; /* Stack items */
+    text-align: center;
+  }
+
+  .cart-card__image img {
+    max-width: 100px; /* Make image smaller */
+    height: auto;
+  }
+
+  .cart-card__quantity,
+  .cart-card__price {
+    font-size: 0.9rem;
+  }
+
+  .remove-item-button {
+    width: 100%;
+    padding: 8px;
+  }
+}
+
 .remove-item-button {
   background: red;
   grid-column: 4 / 5;
+  border-radius: 4px;
+}
+
+.cart-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1em;
+}
+
+.checkout-button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 0.5em 2em;
+  border: 0;
+  font-size: var(--large-font);
+  cursor: pointer;
+  text-decoration: none;
+  border-radius:4px;
+}
+
+.checkout-button:hover {
+  background-color: #45a049;
 }
 
 /* this is the discount badge styling */
@@ -245,7 +296,7 @@ button {
   }
   .cart-card {
     font-size: inherit;
-    grid-template-columns: 150px auto 15%;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
 
@@ -316,3 +367,51 @@ form.search button:hover {
 }
 
 /* End of search form styles */
+
+/* Start of checkout form style */
+
+.checkout_name, .checkout__address, .checkout__payment {
+  display:grid;
+}
+
+input[type="text"] {
+  width:100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display:block;
+}
+
+fieldset {
+  border-radius: 5px;
+  margin:10px 0;
+}
+
+#checkoutSubmit {
+  background-color: #04AA6D;
+  width:100%;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#checkoutSubmit:hover {
+  background-color: #45a049;
+}
+
+.order__summary__items {
+  display: flex;
+}
+
+/* End of checkout form styles */

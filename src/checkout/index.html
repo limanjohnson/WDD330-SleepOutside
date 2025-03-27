@@ -9,6 +9,7 @@
     <title>Sleep Outside | Checkout</title>
 
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
   <body>
@@ -20,8 +21,8 @@
         <form name="checkout">
           <input type="hidden" name="orderDate" id="orderDate">
 
-          <fieldset>
-            <legend></legend>
+          <fieldset class="customer-info">
+            <legend>Your Information</legend>
             <div class="checkout_name">
               <label for="fname">First Name</label>
               <input type="text" name="fname" id="fname" required>
@@ -40,9 +41,16 @@
             </div>
           </fieldset>
 
-          <fieldset>
+          <fieldset class="customer-billing">
             <legend>Payment</legend>
             <div class="checkout__payment">
+              <p>Accepted Cards </p>
+              <div class="accepted__cards">
+                <i class="fa fa-cc-visa" style="color:navy;"></i>
+                <i class="fa fa-cc-amex" style="color:blue;"></i>
+                <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                <i class="fa fa-cc-discover" style="color:orange;"></i>
+              </div>
               <label for="cardNumber">Card Number</label>
               <input type="text" name="cardNumber" id="cardNumber" required>
               <label for="expiration">Expiration</label>
@@ -54,18 +62,27 @@
 
           <fieldset class="checkout-summary">
             <legend>Order Summary</legend>
-
             <div class="order__summary">
-              <div>Items</div>
-              <div id="num-items"></div>
-              <div>Subtotal</div>
-              <div id="cartTotal"></div>
-              <div>Tax</div>
-              <div id="tax"></div>
-              <div>Shipping</div>
-              <div id="shipping"></div>
-              <div>Total</div>
-              <div id="orderTotal"></div>
+              <div class="order__summary__items">
+                <div>Items:&nbsp;</div>
+                <div id="num-items"></div>
+              </div>
+              <div class="order__summary__items">
+                <div>Subtotal:&nbsp;</div>
+                <div id="cartTotal"></div>
+              </div>
+              <div class="order__summary__items">
+                <div>Tax:&nbsp;</div>
+                <div id="tax"></div>
+              </div>
+              <div class="order__summary__items">
+                <div>Shipping:&nbsp;</div>
+                <div id="shipping"></div>
+              </div>
+              <div class="order__summary__items">
+                <div>Total:&nbsp;</div>
+                <div id="orderTotal"></div>
+              </div>
             </div>
           </fieldset>
           <button type="submit" id="checkoutSubmit">Checkout</button>
