@@ -1,28 +1,5 @@
 import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
 
-// function productDetailsTemplate(product) {
-//     const discount = Math.round(((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100);
-//     const hasDiscount = discount > 0;
-
-//     return `<section class="product-detail">
-//         <h3>${product.Brand.Name}</h3>
-//         <h2 class="divider">${product.NameWithoutBrand}</h2>
-//         <img class="divider" src="${product.Image}" alt="${product.NameWithoutBrand}" />
-//         <div class="price-container">
-//           ${hasDiscount ? `<span class="discount-badge">${discount}% OFF</span>` : ""}
-//           <p class="product-card__price">
-//             Was: <s>$${product.SuggestedRetailPrice.toFixed(2)}</s>
-//             Now: <strong>$${product.FinalPrice.toFixed(2)}</strong>
-//           </p>
-//         </div>
-//         <p class="product__color">${product.Colors[0].ColorName}</p>
-//         <p class="product__description">${product.DescriptionHtmlSimple}</p>
-//         <div class="product-detail__add">
-//             <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
-//         </div>
-//     </section>`;
-// }
-
 function productDetailsTemplate(product) {
     const discount = Math.round(((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100);
     const hasDiscount = discount > 0;
@@ -30,12 +7,12 @@ function productDetailsTemplate(product) {
     document.querySelector("h2").textContent = product.Category.charAt(0).toUpperCase() + product.Category.slice(1);
     document.querySelector("#p-brand").textContent = product.Brand.Name;
     document.querySelector("#p-name").textContent = product.NameWithoutBrand;
-  
+
     const productImage = document.querySelector("#p-image");
     productImage.src = product.Images.PrimaryExtraLarge;
     productImage.alt = product.NameWithoutBrand;
 
-  document.querySelector("#p-price").innerHTML = `
+    document.querySelector("#p-price").innerHTML = `
         <div class="price-container">
             ${hasDiscount ? `<span class="discount-badge">${discount}% OFF</span>` : ""}
             <p class="product-card__price">
@@ -47,16 +24,16 @@ function productDetailsTemplate(product) {
 
     document.querySelector("#p-color").textContent = product.Colors[0].ColorName;
     document.querySelector("#p-description").innerHTML = product.DescriptionHtmlSimple;
-  
+
     document.querySelector("#addToCart").dataset.id = product.Id;
 }
 
 export default class ProductDetails {
-    constructor(productId, dataSource){
+    constructor(productId, dataSource) {
         this.productId = productId;
         this.product = {};
         this.dataSource = dataSource;
-      }
+    }
 
     async init() {
         this.product = await this.dataSource.findProductById(this.productId);
@@ -67,19 +44,35 @@ export default class ProductDetails {
     }
 
     addProductToCart(product) {
-
+        // Get selected quantity from input
+        const quantityInput = document.getElementById("productQuantity");
+        let quantity = parseInt(quantityInput.value, 10);
+    
+        // Ensure quantity is a positive integer
+        if (isNaN(quantity) || quantity < 1) {
+            quantity = 1;
+        }
+    
         product.Image = product.Images?.PrimarySmall || "";
-
+    
         let cartItems = getLocalStorage("so-cart");
         if (!Array.isArray(cartItems)) {
             cartItems = [];
         }
-        cartItems.push(product);
+    
+        // Check if product already exists in cart to update quantity
+        const existingItemIndex = cartItems.findIndex(item => item.Id === product.Id);
+        
+        if (existingItemIndex > -1) {
+            // Update quantity if item exists
+            cartItems[existingItemIndex].quantity += quantity;
+        } else {
+            // Set quantity for new product
+            product.quantity = quantity;
+            cartItems.push(product);
+        }
+    
         setLocalStorage("so-cart", cartItems);
         updateCartCount();
-    }
-
-    renderProductDetails() {
-        productDetailsTemplate(this.product);
     }
 }

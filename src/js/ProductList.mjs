@@ -11,7 +11,7 @@ function productCardTemplate(product) {
   const hasDiscount = discount > 0;
 
   return `<li class="product-card">
-    <a href="../product_pages/?product=${product.Id}">
+    <a href="../product_pages/index.html?product=${product.Id}">
     <img src="${product.Images?.PrimaryMedium || "/images/default.jpg"}" alt="Image of ${product.Name}" />
 
       <h3 class="card__brand">${product.Brand.Name}</h3>
