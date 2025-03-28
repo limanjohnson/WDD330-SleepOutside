@@ -90,3 +90,36 @@ export function updateCartCount() {
     }
   }
 }
+
+export function alertMessage(message, scroll = true) {
+  // Create the alert element
+  const alert = document.createElement('div');
+  alert.classList.add('site-alert'); // Use the existing site-alert class for styling
+
+  // Set the content of the alert (message)
+  alert.innerHTML = `
+    <span class="site-alert__message">${message}</span>
+    <button class="site-alert__close" aria-label="Close alert">×</button>
+  `;
+
+  // Add a click listener to remove the alert if the user clicks the close button
+  alert.addEventListener('click', function (e) {
+    if (e.target.classList.contains('site-alert__close')) {
+      alert.remove();
+    }
+  });
+
+  // Add the alert to the top of the main element
+  const main = document.querySelector('main');
+  main.prepend(alert);
+
+  // Optionally scroll the page to the top to make sure the user sees the error
+  if (scroll) {
+    window.scrollTo(0, 0);
+  }
+}
+
+export function removeAllAlerts() {
+  // placeholder: add implementation if needed later
+  console.log("removeAllAlerts called (placeholder)");
+}

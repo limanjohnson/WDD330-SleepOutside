@@ -11,9 +11,9 @@ function productCardTemplate(product) {
   const hasDiscount = discount > 0;
 
   return `<li class="product-card">
-    <a href="../product_pages/?product=${product.Id}">
-    <img src="${product.Images?.PrimaryMedium || "/images/default.jpg"}" alt="Image of ${product.Name}" />
-
+      <a href="../product_pages/index.html?product=${product.Id}">
+        <img src="${product.Images?.PrimaryMedium || "/images/default.jpg"}" alt="Image of ${product.Name}" />
+      </a>
       <h3 class="card__brand">${product.Brand.Name}</h3>
       <h2 class="card__name">${product.NameWithoutBrand}</h2>
 
@@ -24,7 +24,7 @@ function productCardTemplate(product) {
           <strong>$${product.FinalPrice.toFixed(2)}</strong>
         </p>
       </div>
-    </a>
+    
     <button class="add-to-cart-btn" data-id="${product.Id}">Add to Cart</button>
   </li>`;
 }
