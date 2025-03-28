@@ -96,11 +96,11 @@ export default class CheckoutProcess {
     json.items = packageItems(this.list);
 
     // ✅ Log BEFORE the try block
-    console.log("Payload sent to server:", json);
+    // console.log("Payload sent to server:", json);
 
     try {
       const res = await services.checkout(json);
-      console.log(res);
+      // console.log(res);
       setLocalStorage("so-cart", []);
       location.assign("/checkout/success.html");
     } catch (err) {
@@ -113,7 +113,7 @@ export default class CheckoutProcess {
           alertMessage(`${key}: ${err.message[key]}`);
         }
       } else {
-        console.error("Unexpected error:", err);
+        // console.error("Unexpected error:", err);
         alertMessage("An unexpected error occurred. Please try again.");
       }
     }

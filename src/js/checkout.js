@@ -19,6 +19,9 @@ document.querySelector("#checkoutSubmit").addEventListener("click", (e) => {
     order.checkout();
     window.location.href = "../checkout/success.html"; // clearly redirect on success
   }
+
+  localStorage.clear();
+
 });
 
 function renderCheckoutSummary() {
@@ -31,7 +34,6 @@ function renderCheckoutSummary() {
   const orderTotalElement = document.getElementById("orderTotal");
 
   if (!numItemsElement || !cartTotalElement || !taxElement || !shippingElement || !orderTotalElement) {
-    console.error("Checkout summary elements not found.");
     return;
   }
 

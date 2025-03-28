@@ -75,4 +75,8 @@ export default class ProductDetails {
         setLocalStorage("so-cart", cartItems);
         updateCartCount();
     }
+
+    renderProductDetails() {
+      productDetailsTemplate(this.product)
+    }
 }

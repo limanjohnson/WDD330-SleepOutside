@@ -4,7 +4,7 @@
   /* colors */
   --primary-color: #f0a868;
   --secondary-color: #525b0f;
-  --tertiary-color: #a4b8c4;
+  --tertiary-color: #59626a;
   --light-grey: #d0d0d0;
   --dark-grey: #303030;
 
@@ -72,7 +72,6 @@ header {
   height: 80px;
 
   flex-direction: column;
-  align-items: flex-end;
   box-shadow: 1px 1px 4px var(--light-grey);
   justify-content: center;
   align-items: center;
@@ -96,13 +95,19 @@ header {
 
 button {
   padding: 0.5em 2em;
-  background-color: var(--secondary-color);
+  background-color: #007b5e;
   color: white;
   margin: auto;
   display: block;
   border: 0;
   font-size: var(--large-font);
   cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #005f46;
 }
 
 .divider {
@@ -268,6 +273,10 @@ button {
   border-radius: 4px;
 }
 
+.remove-item-button:hover {
+  background: #bf0000;
+}
+
 .cart-container {
   display: flex;
   flex-direction: column;
@@ -281,7 +290,7 @@ button {
 }
 
 .checkout-button {
-  background-color: #04aa6d;
+  background-color: #007b5e;
   color: white;
   padding: 0.5em 2em;
   border: 0;
@@ -289,19 +298,22 @@ button {
   cursor: pointer;
   text-decoration: none;
   border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
 .checkout-button:hover {
-  background-color: #45a049;
+  background-color: #005f46;
 }
 
 /* this is the discount badge styling */
 .price-container {
   display: flex;
   align-items: center;
-  gap: 10px;
-  /* Space between price and badge */
+  gap: 5px;
+  flex-direction: column;
 }
+  /* Space between price and badge */
+
 
 .discount-badge {
   background-color: red;
@@ -424,7 +436,7 @@ fieldset {
 }
 
 #checkoutSubmit {
-  background-color: var(--secondary-color);
+  background-color: #007b5e;
   width: 100%;
   color: white;
   padding: 12px 20px;
@@ -438,7 +450,7 @@ fieldset {
 }
 
 #checkoutSubmit:hover {
-  background-color: var(--primary-color);
+background-color: #005f46;
 }
 
 .order__summary__items {
@@ -454,23 +466,23 @@ fieldset {
   font-weight: bold;
 }
 
-main.divider {
+main.product-listing-container {
   text-align: center;
   padding: 2rem;
 }
 
-main.divider h2 {
-  font-size: 2rem;
+main.product-listing-container h2 {
+  font-size: 1.2rem;
   margin-bottom: 1rem;
   color: var(--dark-grey);
 }
 
-main.divider p {
+main.product-listing-container p {
   font-size: 1.2rem;
   margin-bottom: 2rem;
 }
 
-main.divider a {
+main.product-listing-container a {
   display: inline-block;
   padding: 0.75rem 1.5rem;
   color: white;
@@ -479,7 +491,12 @@ main.divider a {
   transition: background-color 0.3s ease;
 }
 
-main.divider a:hover {
+li.product-card {
+  display: grid;
+  grid-template-rows: 41% 6% 21% 13% 22%;
+}
+
+main.product-listing-container a:hover {
   background-color: var(--tertiary-color);
 }
 
@@ -515,4 +532,24 @@ main.divider a:hover {
   display: inline-block;
   visibility: visible;
   position: relative;
+}
+
+.order-success-container {
+  text-align:center;
+}
+
+.order-success-container a {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  color:white;
+  background-color: var(--tertiary-color);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  margin-bottom:2em;
+}
+
+.order-success-container a:hover {
+  background-color: #dddddd;
+  color: var(--tertiary-color);
 }
