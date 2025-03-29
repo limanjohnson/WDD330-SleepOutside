@@ -419,7 +419,7 @@ fieldset {
 /* Newsletter form on home page */
 
 .newsletter{
-  margin: 0 auto;
+  margin: 0.75rem auto;
   max-width: 600px;
   border: 2px solid var(--primary-color); /* Add a light blue border */
 }
