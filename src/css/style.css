@@ -19,10 +19,19 @@
 }
 
 body {
+  display:flex;
+  flex-direction:column;
   margin: 0;
   font-family: var(--font-body);
   font-size: var(--font-base);
   color: var(--dark-grey);
+  height:100vh;
+}
+
+main {
+  max-width: 1080px;
+  margin: auto;
+  flex: 1;
 }
 
 img {
@@ -154,6 +163,9 @@ button:hover {
 
 .products {
   padding: 0.5em;
+  max-width: 1000px;
+  width:80vw;
+  margin:0 auto;
 }
 
 .product-list {
@@ -326,10 +338,6 @@ button:hover {
 }
 
 @media screen and (min-width: 500px) {
-  body {
-    max-width: 1080px;
-    margin: auto;
-  }
 
   .mission {
     font-size: 1.2em;
@@ -344,6 +352,9 @@ button:hover {
 footer {
   font-size: var(--small-font);
   padding: 1em;
+  background:#333;
+  color:white;
+  text-align:center;
 }
 
 /* start of product category image styles */
@@ -373,7 +384,17 @@ footer {
 
 /* End of cart image styles */
 
-/* Start of search form styles */
+/* Start of styles for navigation menu */
+
+.menu-items {
+  display:flex;
+  align-items: center;
+  gap:10px;
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+/* End of styles for navigation menu */
 
 /* Style for the search form */
 form.search {
@@ -553,3 +574,60 @@ main.product-listing-container a:hover {
   background-color: #dddddd;
   color: var(--tertiary-color);
 }
+
+/* Start of Login Page Styles */
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  border: 1px solid var(--light-grey);
+  border-radius: 5px;
+  margin-top:25%;
+  width: 75vw;
+  max-width:1000px;
+  background-color: #dddddd;
+}
+
+.login-form {
+  width:50vw;
+  max-width:750px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.login-fieldset {
+  background-color: white;
+  width:50%;
+  height: 30vh;
+}
+
+#password {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.login-button {
+  padding: .25em 1em;
+  margin:0;
+  width:100%;
+}
+
+#forgot-password {
+  margin-top: 1em;
+  text-align:center;
+  font-size: var(--small-font);
+}
+
+#forgot-password a {
+  text-decoration:none;
+  color: #757575;
+}
+
