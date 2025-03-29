@@ -415,3 +415,54 @@ fieldset {
 }
 
 /* End of checkout form styles */
+
+/* Newsletter form on home page */
+
+.newsletter{
+  margin: 0 auto;
+  max-width: 600px;
+  border: 2px solid var(--primary-color); /* Add a light blue border */
+}
+
+.newsletter p, .newsletter h3{
+  text-align: center;
+}
+
+form {
+  max-width: 600px; /* Make the form no wider than 600 pixels */
+  width: 90%; /* Let it take up 90% of the screen width, but no more than 600px */
+  margin: 20px auto; /* Center the form on the page */
+  padding: 20px; /* Add some space inside the form */
+  border-radius: 8px; /* Round the corners a little */
+  font-family: sans-serif; /* Use a simple font */
+}
+
+label {
+  display: block; /* Make each label appear on a new line */
+  margin-top: 10px; /* Add space above each label */
+  font-weight: bold; /* Make the label text bold */
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 100%; /* Make the input fields fill the width of the form */
+  padding: 8px; /* Give the input fields some space inside */
+  margin-top: 5px; /* Add space below the input fields */
+  border: 1px solid var(--primary-color); /* Add a light gray border */
+  border-radius: 4px; /* Round the corners a little */
+  box-sizing: border-box; /* Include padding and border in the width */
+}
+
+input[type="submit"] {
+  background-color: lightgreen; /* Make the submit button light green */
+  color: black; /* Make the text black */
+  padding: 10px 15px; /* Give the button some space inside */
+  border: none; /* Remove the button border */
+  border-radius: 4px; /* Round the corners a little */
+  cursor: pointer; /* Change the cursor to a pointer when hovering */
+  margin-top: 20px; /* Add some space above the button */
+}
+
+input[type="submit"]:hover {
+  background-color: darkseagreen; /* Make the button a darker green when hovering */
+}
