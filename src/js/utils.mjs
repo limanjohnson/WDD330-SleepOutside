@@ -80,6 +80,7 @@ export async function loadHeaderFooter() {
 // update the cart count by the cart image
 export function updateCartCount() {
   const cartItems = getLocalStorage("so-cart") || [];
+  const cartIcon = document.querySelector(".cart");
   const cartCountElement = document.getElementById("cart-count");
   if (cartCountElement) {
     if (cartItems.length === 0) {
@@ -87,6 +88,10 @@ export function updateCartCount() {
     } else {
       cartCountElement.style.display = "block";
       cartCountElement.textContent = cartItems.length;
+      cartIcon.id = "shake";
+      setTimeout(function() {
+        cartIcon.id = "";
+      }, 750);
     }
   }
 }
