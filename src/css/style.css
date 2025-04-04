@@ -142,6 +142,11 @@ button:hover {
   top: -8px;
 }
 
+#shake{
+  /* animation: shake 0.5s infinite alternate; */
+  background-color: green;
+}
+
 /* End cart icon styles */
 
 .mission {
